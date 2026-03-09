@@ -603,26 +603,84 @@ strong {
 }
 
 /* Responsive */
-@media (max-width: 650px) {
-    .button-group {
-        flex-direction: column;
+@media (max-width: 768px) {
+    body {
+        padding: 2rem 1rem;
     }
 
-    button {
-        width: 100%;
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .logo-icon {
+        font-size: 2rem;
     }
 
     .glass {
         padding: 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    header {
+        margin-bottom: 2rem;
     }
 
     header h1 {
-        font-size: 2.25rem;
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .glass {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .time-cell {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
     }
 
     .badge {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.6rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    th,
+    td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    th i {
+        margin-right: 0.2rem;
+    }
+
+    textarea {
+        height: 120px;
     }
 }
 
