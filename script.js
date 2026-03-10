@@ -116,7 +116,7 @@ function copyEscala() {
     }
 
     const routeText = document.querySelector('header p') ? document.querySelector('header p').innerText : '';
-    let text = `ESCALA DE RONDAS - ${routeText}\n\n`;
+    let text = `*📋 ESCALA DE RONDAS*\n_${routeText}_\n\n`;
 
     const rows = document.querySelectorAll('#escalaBody tr');
     let currentDay = '';
@@ -130,12 +130,12 @@ function copyEscala() {
             const name = cols[2].innerText.trim();
 
             if (day !== currentDay) {
-                if (currentDay !== '') text += '\n\n'; // Duas quebras de linha reais para pular espaço entre dias
-                text += `${day}\n\n`;
+                if (currentDay !== '') text += '\n'; // Uma quebra de linha extra entre dias
+                text += `*📅 ${day}*\n`;
                 currentDay = day;
             }
 
-            text += `${time} ${name}\n`;
+            text += `🕒 ${time} - *${name}*\n`;
         }
     });
 
