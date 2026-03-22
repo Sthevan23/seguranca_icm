@@ -31,6 +31,30 @@ document.getElementById('printBtn').addEventListener('click', () => window.print
 document.getElementById('pdfBtn').addEventListener('click', exportPDF);
 document.getElementById('shareBtn').addEventListener('click', sharePDF);
 
+const periodoRondaSelect = document.getElementById('periodo-ronda');
+
+function getRondaConfig(periodo) {
+    const domingo = { name: 'Domingo', key: 'sunday', hours: 12, start: 0 };
+    const configs = {
+        'sexta-dia-todo': {
+            periodLabel: 'Sexta (dia todo) · Sáb · Dom',
+            days: [
+                { name: 'Sexta-feira', key: 'friday', hours: 24, start: 0 },
+                { name: 'Sábado', key: 'saturday', hours: 24, start: 0 },
+                domingo
+            ]
+        },
+        'sabado-meia-noite': {
+            periodLabel: 'Sábado 00:00 em diante · Sáb · Dom',
+            days: [
+                { name: 'Sábado', key: 'saturday', hours: 24, start: 0 },
+                domingo
+            ]
+        }
+    };
+    return configs[periodo] || configs['sexta-dia-todo'];
+}
+
 function generateEscala() {
     const namesText = document.getElementById('names').value.trim();
     if (!namesText) {
@@ -57,18 +81,19 @@ function generateEscala() {
             selectedRouteText = routeSelect.options[routeSelect.selectedIndex].text;
         }
 
-        // Update header subtitle with route
+        const periodoVal = periodoRondaSelect ? periodoRondaSelect.value : 'sexta-dia-todo';
+        const rondaConfig = getRondaConfig(periodoVal);
+
+        // Update header subtitle with route and period
         const subtitle = document.querySelector('header p');
-        if (subtitle) subtitle.innerText = `Rota: ${selectedRouteText}`;
+        if (subtitle) {
+            subtitle.innerText = `Rota: ${selectedRouteText} · Período: ${rondaConfig.periodLabel}`;
+        }
 
         const escalaBody = document.getElementById('escalaBody');
         escalaBody.innerHTML = '';
 
-        const days = [
-            { name: 'Sexta-feira', key: 'friday', hours: 24, start: 0 },
-            { name: 'Sábado', key: 'saturday', hours: 24, start: 0 },
-            { name: 'Domingo', key: 'sunday', hours: 12, start: 0 }
-        ];
+        const days = rondaConfig.days;
 
         let nameIndex = 0;
         let delay = 0;

@@ -41,6 +41,14 @@
                 </div>
 
                 <div class="input-group">
+                    <label for="periodo-ronda"><i class="fa-solid fa-calendar-week"></i> Como começa a ronda</label>
+                    <select id="periodo-ronda" class="custom-select">
+                        <option value="sexta-dia-todo">Sexta o dia todo, depois Sábado e Domingo</option>
+                        <option value="sabado-meia-noite">Chego sexta à noite — ronda só a partir de Sábado 00:00 (Sáb + Dom)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
                     <label for="names"><i class="fa-solid fa-users"></i> Nomes dos Responsáveis</label>
                     <textarea id="names" placeholder="Exemplo:&#10;João&#10;Maria&#10;Pedro"></textarea>
                     <small class="hint">Adicione um nome por linha</small>
